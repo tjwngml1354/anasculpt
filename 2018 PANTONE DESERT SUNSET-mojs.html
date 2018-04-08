@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+<head>
+
+  <title>
+    2018 PANTONE COLOR org. DESERT SUNSET
+  </title>
+
+</head>
+<body bgcolor='black'>
+  <script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+  <script>
+    var first = new mojs.Shape({
+      shape:'circle',
+      radius:{0:100},
+      stroke:'#5F4B8B',
+      strokeWidth:{20:0},
+      fill:'none',
+      left:0, top:0,
+      duration:500,
+    });
+    var seconds = [];
+    var colors = [
+      '#F7C46C','#EA6759','#E55982','#CA3422','#EC935E','#9884B9','#C47E5A','#0078A7']
+    for(var i=0; i < 8; i++) {
+      var second = new mojs.Shape({
+        parent:first.el,
+        shape:'circle',
+        radius:{0:'rand(50,200)'},
+        stroke:colors[i],
+        strokeWidth:{20:0},
+        fill:'none',
+        left:0, top:0,
+        x:'rand(-100%, 200%)',
+        y:'rand(-100%, 200%)',
+        dalay:450,
+        duration:'rand(600,2000)',
+      });
+      seconds.push(second);
+    }
+    document.addEventListener('click', function(e){
+      first.tune({x:e.pageX, y:e.pageY}).replay();
+      for(var i=0; i<seconds.length; i++){
+        seconds[i].generate().replay();
+      }
+    })
+  </script>
+</body>
+</html>
